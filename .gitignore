@@ -1,0 +1,16 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+dist/
+
+# Env variables
+.env
+
+# Sistema (Windows/macOS/Linux)
+.DS_Store
+Thumbs.db
+
+# Railway o cualquier despliegue
+railway.json
