@@ -289,19 +289,19 @@ client.on('messageCreate', async (message) => {
       fields: [
         {
           name: '🎵 Comandos de Música',
-          value: `\`!musica <nombre o link>\` – Reproduce una canción\n\`!pausar\` – Pausa la canción actual\n\`!reanudar\` – Reanuda la canción pausada\n\`!saltar\` – Salta la canción actual`,
+          value: `\`¿musica <nombre o link>\` – Reproduce una canción\n\`¿pausar\` – Pausa la canción actual\n\`¿reanudar\` – Reanuda la canción pausada\n\`¿saltar\` – Salta la canción actual`,
         },
         {
           name: '🤖 Comandos de IA',
-          value: `\`!botsito <pregunta>\` – Pregunta a la IA de DeepSeek`,
+          value: `\`¿botsito <pregunta>\` – Pregunta a la IA de DeepSeek`,
         },
         {
           name: '📢 Comandos de Anuncio de Stream',
-          value: `\`!stream leya\` – Anuncia el stream de Leya\n\`!stream darkar\` – Anuncia el stream de Darkar`,
+          value: `\`¿stream leya\` – Anuncia el stream de Leya\n\`¿stream darkar\` – Anuncia el stream de Darkar`,
         },
         {
           name: '📌 Otros',
-          value: `\`!help\` – Muestra esta ayuda`,
+          value: `\`¿help\` – Muestra esta ayuda`,
         }
       ],
       footer: {
