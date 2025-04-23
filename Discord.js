@@ -111,7 +111,7 @@ client.on('messageCreate', async (message) => {
   }
 
   // ✅ Comandos
-  if (!message.content.startsWith('!')) return;
+  if (!message.content.startsWith('¿')) return;
   const args = message.content.slice(1).trim().split(/ +/);
   const command = args.shift().toLowerCase();
   const member = message.member;
@@ -367,4 +367,3 @@ async function logAction(text) {
 
 // ✅ Iniciar el bot
 client.login(token);
-
