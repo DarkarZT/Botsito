@@ -46,27 +46,25 @@ const client = new Client({
 // ✅ Configuración de DisTube
 const distube = new DisTube(client, {
   plugins: [
-    new YtDlpPlugin(),
+    new YtDlpPlugin({
+      update: false,
+      ytdlOptions: {
+        requestOptions: {
+          headers: {
+            cookie: process.env.YOUTUBE_COOKIE || ""
+          }
+        },
+        highWaterMark: 1 << 25
+      }
+    }),
     new SpotifyPlugin(),
     new SoundCloudPlugin()
   ],
   emitNewSongOnly: true,
   nsfw: true,
-  leaveOnFinish: true,
-  leaveOnEmpty: true,
-  leaveOnStop: true,
-  searchSongs: 1,
-  searchCooldown: 5,
-  ytdlOptions: {
-    requestOptions: {
-      headers: {
-        cookie: process.env.YOUTUBE_COOKIE || ""
-      }
-    },
-    highWaterMark: 1 << 25
-  },
   customFilters: {}
 });
+
 
 // ✅ Función para cerrar sesión del bot
 function shutdownBot() {
