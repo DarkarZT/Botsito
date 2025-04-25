@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "@discordjs/voice": "^0.18.0",
+    "@distube/soundcloud": "^2.0.4",
     "@distube/spotify": "^2.0.2",
     "@distube/yt-dlp": "^2.0.1",
     "discord": "^0.8.2",
