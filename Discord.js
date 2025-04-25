@@ -6,6 +6,7 @@ const { SpotifyPlugin } = require('@distube/spotify');
 const { joinVoiceChannel } = require('@discordjs/voice');
 const { default: playdl } = require("play-dl");
 const { SoundCloudPlugin } = require("@distube/soundcloud");
+process.env.FFMPEG_PATH = '/usr/local/bin/ffmpeg'; // Asegúrate de que esta ruta sea la correcta
 
 const ytSearchApi = require('youtube-search-api');
 require('dotenv').config();
