@@ -11,8 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Instalar ffmpeg y asegurarse de que esté en el PATH global
-RUN apt-get update && \
-    apt-get install -y ffmpeg && \
+RUN apt-get update && apt-get install -y ffmpeg && \
     ln -s /usr/bin/ffmpeg /usr/local/bin/ffmpeg && \
     ffmpeg -version
 
