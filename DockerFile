@@ -10,11 +10,15 @@ COPY package*.json ./
 # Instalar las dependencias
 RUN npm install
 
-# Instalar ffmpeg y asegurarse de que esté en el PATH global
+# Instalar ffmpeg y verificar instalación
 RUN apt-get update && apt-get install -y ffmpeg && \
     ln -s /usr/bin/ffmpeg /usr/local/bin/ffmpeg && \
+    echo "Verificando ffmpeg:" && \
     ffmpeg -version && \
+    echo "Ubicación de ffmpeg:" && \
+    which ffmpeg && \
     apt-get clean
+
 
 # Copiar todos los archivos del proyecto al contenedor
 COPY . .
