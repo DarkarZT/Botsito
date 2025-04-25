@@ -1,9 +1,12 @@
 // ✅ Dependencias principales
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const { DisTube } = require('distube');
-const { YtDlpPlugin } = require('@distube/yt-dlp');
+const { YtDlpPlugin } = require("@distube/yt-dlp");
 const { SpotifyPlugin } = require('@distube/spotify');
 const { joinVoiceChannel } = require('@discordjs/voice');
+const { default: playdl } = require("play-dl");
+const { SoundCloudPlugin } = require("@distube/soundcloud");
+
 const ytSearchApi = require('youtube-search-api');
 require('dotenv').config();
 
@@ -42,7 +45,29 @@ const client = new Client({
 
 // ✅ Configuración de DisTube
 const distube = new DisTube(client, {
-  plugins: [new YtDlpPlugin()],
+  plugins: [
+    new YtDlpPlugin(),
+    new SpotifyPlugin(),
+    new SoundCloudPlugin()
+  ],
+  youtubeDL: false, // 🔴 importante
+  updateYouTubeDL: false,
+  emitNewSongOnly: true,
+  nsfw: true,
+  leaveOnFinish: true,
+  leaveOnEmpty: true,
+  leaveOnStop: true,
+  searchSongs: 1,
+  searchCooldown: 5,
+  ytdlOptions: {
+    requestOptions: {
+      headers: {
+        cookie: process.env.YOUTUBE_COOKIE || ""
+      }
+    },
+    highWaterMark: 1 << 25
+  },
+  customFilters: {},
 });
 // ✅ Función para cerrar sesión del bot
 function shutdownBot() {
