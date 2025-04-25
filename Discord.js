@@ -7,8 +7,9 @@ exec('ffmpeg -version', (error, stdout, stderr) => {
     return;
   }
   console.log(`stdout: ${stdout}`);
-  console.error(`stderr: ${stderr}`);
+  console.log(`stderr: ${stderr}`);
 });
+
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const { DisTube } = require('distube');
 const { YtDlpPlugin } = require("@distube/yt-dlp");
