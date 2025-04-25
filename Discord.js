@@ -50,8 +50,6 @@ const distube = new DisTube(client, {
     new SpotifyPlugin(),
     new SoundCloudPlugin()
   ],
-  youtubeDL: false, // 🔴 importante
-  updateYouTubeDL: false,
   emitNewSongOnly: true,
   nsfw: true,
   leaveOnFinish: true,
@@ -67,8 +65,9 @@ const distube = new DisTube(client, {
     },
     highWaterMark: 1 << 25
   },
-  customFilters: {},
+  customFilters: {}
 });
+
 // ✅ Función para cerrar sesión del bot
 function shutdownBot() {
   console.log('⏹️ Bot inactivo durante 5 minutos. Cerrando sesión...');
