@@ -1,4 +1,4 @@
-# Usar una imagen base de Node.js
+# Usar la imagen base de Node.js
 FROM node:18
 
 # Establecer el directorio de trabajo en el contenedor
@@ -11,7 +11,9 @@ COPY package*.json ./
 RUN npm install
 
 # Instalar ffmpeg
-RUN apt-get update && apt-get install -y ffmpeg
+RUN apt-get update && \
+    apt-get install -y ffmpeg && \
+    ln -s /usr/bin/ffmpeg /usr/local/bin/ffmpeg  # Esto crea un enlace simbólico para asegurarse de que ffmpeg esté en el PATH
 
 # Copiar todos los archivos del proyecto al contenedor
 COPY . .
