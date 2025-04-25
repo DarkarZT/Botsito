@@ -6,10 +6,10 @@ const { SpotifyPlugin } = require('@distube/spotify');
 const { joinVoiceChannel } = require('@discordjs/voice');
 const { default: playdl } = require("play-dl");
 const { SoundCloudPlugin } = require("@distube/soundcloud");
-process.env.FFMPEG_PATH = ffmpegPath;
 
 const ytSearchApi = require('youtube-search-api');
 require('dotenv').config();
+
 // ✅ Configuración de variables de entorno
 const token = process.env.TOKEN;
 const guildId = process.env.GUILD_ID;
