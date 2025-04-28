@@ -1,23 +1,23 @@
-# Usa una imagen oficial de Node.js como base
+# Usar una imagen oficial de Node.js compatible con las dependencias
 FROM node:20-alpine
 
-# Instalar ffmpeg
-RUN apt-get update && apt-get install -y ffmpeg
-
-# Crear el directorio de trabajo
+# Crear y cambiar al directorio de la aplicación
 WORKDIR /app
 
-# Copiar el archivo package.json y package-lock.json
+# Copiar los archivos package.json y package-lock.json
 COPY package*.json ./
 
-# Instalar las dependencias
-RUN npm install
+# Instalar dependencias, solo las de producción
+RUN npm ci --omit=dev
 
-# Copiar el resto de la aplicación
+# Copiar el resto del código de la aplicación
 COPY . .
 
-# Exponer el puerto 3000 (ajustar si tu bot usa otro puerto)
+# Verificar instalación de ffmpeg
+RUN apk add --no-cache ffmpeg
+
+# Exponer el puerto en el que se ejecutará la app
 EXPOSE 3000
 
-# Comando para iniciar el bot
-CMD ["node", "Discord.js"]
+# Ejecutar el script de inicio
+CMD ["npm", "start"]
