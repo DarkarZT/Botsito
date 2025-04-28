@@ -13,10 +13,10 @@ RUN npm install
 # Copia el resto de los archivos de la aplicación al contenedor
 COPY . .
 
-# Ejecuta el comando 'npm ci' para instalar dependencias de producción
+# Usa la caché de npm correctamente, sin montar directamente en el contenedor
 RUN npm ci
 
-# Expon el puerto que usa tu aplicación (si es necesario)
+# Expon el puerto que usa tu aplicación (ajústalo si es necesario)
 EXPOSE 3000
 
 # Comando para ejecutar la aplicación
