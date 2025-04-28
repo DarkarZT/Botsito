@@ -1,8 +1,13 @@
 # Usar una imagen con FFmpeg preinstalado
 FROM jrottenberg/ffmpeg:4.4-slim
 
-# Instalar Node.js y npm
-RUN apt-get update && apt-get install -y nodejs npm
+# Instalar Node.js y npm (mejor usar una imagen oficial de Node.js)
+RUN apt-get update && apt-get install -y curl \
+  && curl -sL https://deb.nodesource.com/setup_18.x | bash - \
+  && apt-get install -y nodejs
+
+# Verificar instalación de FFmpeg
+RUN ffmpeg -version
 
 # Crear y cambiar al directorio de la aplicación
 WORKDIR /app
@@ -16,7 +21,7 @@ RUN npm ci --omit=dev
 # Copiar el resto del código de la aplicación
 COPY . .
 
-# Exponer el puerto
+# Exponer el puerto en el que se ejecutará la app
 EXPOSE 3000
 
 # Ejecutar la aplicación
