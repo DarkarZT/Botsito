@@ -1,23 +1,23 @@
-# Usar una imagen oficial de Node.js compatible con las dependencias
-FROM node:20-alpine
+# Usar imagen base de Node.js con FFmpeg preinstalado
+FROM jrottenberg/ffmpeg:4.4-slim
+
+# Instalar Node.js
+RUN apt-get update && apt-get install -y nodejs npm
 
 # Crear y cambiar al directorio de la aplicación
 WORKDIR /app
 
-# Copiar los archivos package.json y package-lock.json
+# Copiar archivos de configuración
 COPY package*.json ./
 
-# Instalar dependencias, solo las de producción
+# Instalar dependencias de Node.js
 RUN npm ci --omit=dev
 
-# Copiar el resto del código de la aplicación
+# Copiar el resto del código
 COPY . .
 
-# Verificar instalación de ffmpeg
-RUN apk add --no-cache ffmpeg
-
-# Exponer el puerto en el que se ejecutará la app
+# Exponer el puerto
 EXPOSE 3000
 
-# Ejecutar el script de inicio
+# Ejecutar el bot
 CMD ["npm", "start"]
