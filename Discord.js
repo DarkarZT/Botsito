@@ -45,6 +45,7 @@ const client = new Client({
 
 // ✅ Configuración de DisTube
 const distube = new DisTube(client, {
+  ffmpeg: '/usr/bin/ffmpeg', // Aquí configuras la ruta de ffmpeg
   plugins: [
     new YtDlpPlugin({
       update: false,
@@ -64,6 +65,7 @@ const distube = new DisTube(client, {
   nsfw: true,
   customFilters: {}
 });
+
 
 
 // ✅ Función para cerrar sesión del bot
