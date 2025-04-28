@@ -3,17 +3,17 @@ const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const { DisTube } = require('distube');
 const { YtDlpPlugin } = require("@distube/yt-dlp");
 const { SpotifyPlugin } = require('@distube/spotify');
-const { SoundCloudPlugin } = require("@distube/soundcloud");
 const { joinVoiceChannel } = require('@discordjs/voice');
 const { default: playdl } = require("play-dl");
+const { SoundCloudPlugin } = require("@distube/soundcloud");
+
 const ytSearchApi = require('youtube-search-api');
 require('dotenv').config();
 
 // ✅ Configuración de variables de entorno
 const token = process.env.TOKEN;
 const guildId = process.env.GUILD_ID;
-const apikey = process.env.DEEPSEEK_API_KEY;
-
+const apikey = process.env.DEEPSEEK_API_KEY
 // ✅ Roles y parámetros de moderación
 const modRoles = ['👑 Pingüinos Supremos', '🛡️ Guardianes del Iceberg'];
 const leya = 'https://www.twitch.tv/leyaa_u';
@@ -45,7 +45,6 @@ const client = new Client({
 
 // ✅ Configuración de DisTube
 const distube = new DisTube(client, {
-  ffmpeg: '/usr/bin/ffmpeg', // Aquí configuras la ruta de ffmpeg
   plugins: [
     new YtDlpPlugin({
       update: false,
@@ -65,7 +64,6 @@ const distube = new DisTube(client, {
   nsfw: true,
   customFilters: {}
 });
-
 
 
 // ✅ Función para cerrar sesión del bot
@@ -128,15 +126,10 @@ client.on('messageCreate', async (message) => {
   }
 
   // Filtro de spam
-   if (message.content.length > 600) {
-    try {
-      await message.delete(); // Intentamos eliminar el mensaje
-      message.channel.send(`📛 ${message.author} ¡No se permite spam!`);
-      logAction(`${message.author.tag} fue detectado por spam.`);
-    } catch (err) {
-      console.error(`❌ Error al eliminar el mensaje de ${message.author.tag}:`, err);
-      message.channel.send(`⚠️ No se pudo eliminar el mensaje de ${message.author}, pero se detectó spam.`);
-    }
+  if (message.content.length > 600) {
+    await message.delete();
+    message.channel.send(`📛 ${message.author} ¡No se permite spam!`);
+    return logAction(`${message.author.tag} fue detectado por spam.`);
   }
 
   // ✅ Comandos
