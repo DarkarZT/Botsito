@@ -1,11 +1,15 @@
 #!/bin/bash
 set -e
 
-# Actualizar la lista de paquetes
+# Actualizar paquetes
 apt update
 
 # Instalar ffmpeg
 apt install -y ffmpeg
 
-# Luego arrancar tu app (o el bot, o el servidor)
+# ✅ Verificar que ffmpeg está instalado
+echo "Verificando instalación de ffmpeg..."
+ffmpeg -version
+
+# 🔥 Iniciar la app
 npm start
